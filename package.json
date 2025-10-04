@@ -1,0 +1,28 @@
+{
+  "name": "essl-zoho",
+  "version": "1.0.0",
+  "description": "Production-ready real-time sync between eSSL eTimeTrackLite and Zoho People",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "test": "node src/utils/test-connections.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop essl-zoho-sync",
+    "pm2:restart": "pm2 restart essl-zoho-sync",
+    "pm2:logs": "pm2 logs essl-zoho-sync",
+    "pm2:status": "pm2 status essl-zoho-sync",
+    "pm2:monitor": "pm2 monit"
+  },
+  "keywords": ["essl", "zoho", "attendance", "sync", "biometric", "production"],
+  "author": "Your Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "xml2js": "^0.6.2",
+    "moment": "^2.29.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
