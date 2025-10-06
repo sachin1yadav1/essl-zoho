@@ -14,7 +14,11 @@ module.exports = {
         maxInterval: parseInt(process.env.ESSL_MAX_INTERVAL) || 120000,  // 2 minutes
         minInterval: parseInt(process.env.ESSL_MIN_INTERVAL) || 10000,   // 10 seconds
         timeout: parseInt(process.env.ESSL_TIMEOUT) || 30000,
-        maxRetries: parseInt(process.env.ESSL_MAX_RETRIES) || 3
+        maxRetries: parseInt(process.env.ESSL_MAX_RETRIES) || 3,
+        soapActionGetTransactions: process.env.ESSL_SOAP_ACTION_GET || 'GetTransactionData',
+        altSoapActionGetTransactions: process.env.ESSL_SOAP_ACTION_GET_ALT || 'GetTransactionDataJSON',
+        soapActionTestConnection: process.env.ESSL_SOAP_ACTION_TEST || 'TestConnection',
+        altSoapActionTestConnection: process.env.ESSL_SOAP_ACTION_TEST_ALT || 'Ping'
     },
 
     // Zoho People Configuration
