@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "Zoho People API - OAuth + Employee Records",
+    "_postman_id": "8f33a9b2-621c-4e9a-8c41-zohopeople",
+    "description": "Postman collection for authenticating and calling Zoho People API with OAuth 2.0 (India DC example).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1️⃣ Get Access Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "grant_type", "value": "authorization_code", "type": "text" },
+            { "key": "client_id", "value": "YOUR_CLIENT_ID", "type": "text" },
+            { "key": "client_secret", "value": "YOUR_CLIENT_SECRET", "type": "text" },
+            { "key": "redirect_uri", "value": "YOUR_REDIRECT_URI", "type": "text" },
+            { "key": "code", "value": "YOUR_AUTHORIZATION_CODE", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "https://accounts.zoho.in/oauth/v2/token",
+          "protocol": "https",
+          "host": ["accounts", "zoho", "in"],
+          "path": ["oauth", "v2", "token"]
+        },
+        "description": "Exchange authorization code for access + refresh tokens"
+      }
+    },
+    {
+      "name": "2️⃣ Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "grant_type", "value": "refresh_token", "type": "text" },
+            { "key": "client_id", "value": "YOUR_CLIENT_ID", "type": "text" },
+            { "key": "client_secret", "value": "YOUR_CLIENT_SECRET", "type": "text" },
+            { "key": "refresh_token", "value": "YOUR_REFRESH_TOKEN", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "https://accounts.zoho.in/oauth/v2/token",
+          "protocol": "https",
+          "host": ["accounts", "zoho", "in"],
+          "path": ["oauth", "v2", "token"]
+        },
+        "description": "Use refresh token to get new access token"
+      }
+    },
+    {
+      "name": "3️⃣ Get Employee Records (Zoho People)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Zoho-oauthtoken {{access_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "data",
+              "value": "{\"EmployeeID\":\"E001\",\"First_Name\":\"Sachin\",\"Last_Name\":\"Sharma\"}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://people.zoho.in/api/forms/P_EmployeeView/records",
+          "protocol": "https",
+          "host": ["people", "zoho", "in"],
+          "path": ["api", "forms", "P_EmployeeView", "records"]
+        },
+        "description": "Insert or fetch employee data from Zoho People form"
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    { "key": "access_token", "value": "1000.xxxxxx", "type": "string" }
+  ]
+}

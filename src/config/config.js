@@ -6,7 +6,7 @@ module.exports = {
     
     // eSSL Configuration
     essl: {
-        baseUrl: process.env.ESSL_BASE_URL || 'http://localhost:3366/WebAPIService.asmx',
+        baseUrl: process.env.ESSL_BASE_URL || 'http://ebioservernew.esslsecurity.com:99/webservice.asmx',
         username: process.env.ESSL_USERNAME || 'essl',
         password: process.env.ESSL_PASSWORD || 'essl',
         // Adaptive polling configuration
@@ -19,11 +19,31 @@ module.exports = {
 
     // Zoho People Configuration
     zoho: {
-        accessToken: process.env.ZOHO_ACCESS_TOKEN || 'your_zoho_oauth_token_here',
-        apiUrl: process.env.ZOHO_API_URL || 'https://people.zoho.com/people/api/attendance',
+        // OAuth Configuration
+        oauth: {
+            clientId: process.env.ZOHO_CLIENT_ID,
+            clientSecret: process.env.ZOHO_CLIENT_SECRET,
+            redirectUri: process.env.ZOHO_REDIRECT_URI || 'http://localhost:3000/oauth/callback',
+            scope: process.env.ZOHO_SCOPE || 'ZohoPeople.attendance.ALL,ZohoPeople.forms.READ,ZohoPeople.employee.READ',
+            accountsUrl: process.env.ZOHO_ACCOUNTS_URL || 'https://accounts.zoho.in',
+            accessToken: process.env.ZOHO_ACCESS_TOKEN,
+            refreshToken: process.env.ZOHO_REFRESH_TOKEN,
+            tokenExpiresAt: process.env.ZOHO_TOKEN_EXPIRES_AT
+        },
+        
+        // API Configuration - Updated with specific endpoints
+        apiUrl: process.env.ZOHO_API_BASE_URL || 'https://people.zoho.in/people/api',
+        attendanceApiUrl: process.env.ZOHO_ATTENDANCE_API_URL || 'https://people.zoho.in/people/api/attendance',
+        employeeApiUrl: process.env.ZOHO_EMPLOYEE_API_URL || 'https://people.zoho.in/api/forms/P_EmployeeView/records',
         timeout: parseInt(process.env.ZOHO_TIMEOUT) || 15000,
         maxRetries: parseInt(process.env.ZOHO_MAX_RETRIES) || 3,
-        rateLimitDelay: parseInt(process.env.ZOHO_RATE_LIMIT_DELAY) || 100
+        rateLimitDelay: parseInt(process.env.ZOHO_RATE_LIMIT_DELAY) || 100,
+        
+        // OAuth Server Configuration
+        oauthServer: {
+            port: parseInt(process.env.OAUTH_SERVER_PORT) || 3000,
+            host: process.env.OAUTH_SERVER_HOST || 'localhost'
+        }
     },
 
     // Sync Configuration

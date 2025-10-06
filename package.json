@@ -1,12 +1,18 @@
 {
   "name": "essl-zoho",
-  "version": "1.0.0",
-  "description": "Production-ready real-time sync between eSSL eTimeTrackLite and Zoho People",
+  "version": "2.0.0",
+  "description": "Production-ready real-time sync between eSSL eTimeTrackLite and Zoho People with OAuth 2.0",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "node src/app.js",
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "test": "node src/utils/test-connections.js",
+    "test:zoho": "node src/utils/test-zoho-api.js",
+    "test:zoho:all": "node src/utils/test-zoho-api.js all",
+    "test:zoho:oauth": "node src/utils/test-zoho-api.js oauth",
+    "test:zoho:connection": "node src/utils/test-zoho-api.js connection",
+    "oauth:start": "node src/utils/zohoAuthServer.js",
+    "oauth:test": "node src/utils/test-zoho-api.js oauth",
     "pm2:start": "pm2 start ecosystem.config.js",
     "pm2:stop": "pm2 stop essl-zoho-sync",
     "pm2:restart": "pm2 restart essl-zoho-sync",
@@ -14,13 +20,24 @@
     "pm2:status": "pm2 status essl-zoho-sync",
     "pm2:monitor": "pm2 monit"
   },
-  "keywords": ["essl", "zoho", "attendance", "sync", "biometric", "production"],
+  "keywords": [
+    "essl",
+    "zoho",
+    "attendance",
+    "sync",
+    "biometric",
+    "production",
+    "oauth2"
+  ],
   "author": "Your Team",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
-    "xml2js": "^0.6.2",
-    "moment": "^2.29.4"
+    "dotenv": "^16.0.3",
+    "express": "^5.1.0",
+    "moment": "^2.29.4",
+    "pm2": "^5.3.0",
+    "xml2js": "^0.6.2"
   },
   "engines": {
     "node": ">=16.0.0"
