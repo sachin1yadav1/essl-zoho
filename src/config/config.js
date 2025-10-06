@@ -15,10 +15,14 @@ module.exports = {
         minInterval: parseInt(process.env.ESSL_MIN_INTERVAL) || 10000,   // 10 seconds
         timeout: parseInt(process.env.ESSL_TIMEOUT) || 30000,
         maxRetries: parseInt(process.env.ESSL_MAX_RETRIES) || 3,
+        soapEndpoint: process.env.ESSL_SOAP_ENDPOINT, // e.g. http://host/webservice.asmx
+        soapNs: process.env.ESSL_SOAP_NS || 'http://tempuri.org/',
+        soapHeaderStyle: process.env.ESSL_SOAP_HEADER_STYLE || 'namespaced',
         soapActionGetTransactions: process.env.ESSL_SOAP_ACTION_GET || 'GetTransactionData',
-        altSoapActionGetTransactions: process.env.ESSL_SOAP_ACTION_GET_ALT || 'GetTransactionDataJSON',
-        soapActionTestConnection: process.env.ESSL_SOAP_ACTION_TEST || 'TestConnection',
-        altSoapActionTestConnection: process.env.ESSL_SOAP_ACTION_TEST_ALT || 'Ping'
+        altSoapActionGetTransactions: process.env.ESSL_ALT_SOAP_ACTION_GET || 'GetTransactionData', // Remove JSON variant
+        soapActionTestConnection: process.env.ESSL_SOAP_ACTION_TEST || 'GetEmployeeCodes', // Use working method
+        altSoapActionTestConnection: process.env.ESSL_ALT_SOAP_ACTION_TEST || 'GetEmployeeCodes'
+       
     },
 
     // Zoho People Configuration
